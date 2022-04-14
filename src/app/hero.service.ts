@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Hero } from './hero';
-import { MessageService } from './message.service';
+import { MessagesService } from "messages"
 import { HEROES } from './mock-heroes';
 
 import { Observable, of } from 'rxjs';
@@ -19,7 +19,7 @@ export class HeroService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messagesService: MessagesService) { }
 
   public getHeroes(): Observable<Hero[]> {
     const heroes = this.http.get<Hero[]>(this.heroesUrl)
@@ -82,7 +82,8 @@ export class HeroService {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.messagesService.add(`HeroService: ${message}`);
+    console.log("YYYYY");
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
